@@ -1,0 +1,17 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  compile:
+    cmds:
+      - cmake --build build
+  execute:
+    cmds:
+      - gazebo --verbose test.world
+      # - echo {{.GAZEBO_MODEL_PATH}}
+    env:
+      GAZEBO_MODEL_PATH: "$(pwd)/models:{{.GAZEBO_MODEL_PATH}}"
